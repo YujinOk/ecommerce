@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import firesore from "./services/firestore.js";
+import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Carouselfeature from "./components/Carouselfeature/Carouselfeature.jsx";
+import MyNav from "./components/Nav/Nav.jsx";
+import Grid from "./components/Grid/Grid.jsx";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div>
+            <MyNav />
+            <Carouselfeature />
+            <Grid />
+        </div>
+    );
+};
 
 export default App;
