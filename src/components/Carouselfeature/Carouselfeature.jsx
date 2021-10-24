@@ -2,14 +2,15 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { useContext } from "react";
 import { ItemContext } from "../../context/ItemContext";
+import styles from "./Carouselfeature.module.scss";
 
 const Carouselfeature = () => {
     const { items, setItems } = useContext(ItemContext);
     const carouselSlides = items.map((item, index) => {
         return (
-            <Carousel.Item key={index}>
+            <Carousel.Item key={index} className={styles.carousel_Container}>
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 h-100"
                     src={item.img}
                     alt="First slide"
                 />

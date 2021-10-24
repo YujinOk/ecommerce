@@ -5,16 +5,26 @@ import Carouselfeature from "./components/Carouselfeature/Carouselfeature.jsx";
 import MyNav from "./components/Nav/Nav.jsx";
 import Grid from "./components/Grid/Grid.jsx";
 import ItemProvider from "./context/ItemContext.jsx";
-
+import Items from "./components/Items/Items.jsx";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 const App = () => {
     return (
-        <ItemProvider>
-            <div>
-                <MyNav />
-                <Carouselfeature />
-                <Grid />
-            </div>
-        </ItemProvider>
+        <Router>
+            <ItemProvider>
+                <div>
+                    <MyNav />
+                    <Switch>
+                        <Route path="/items/:id">
+                            <Items />
+                        </Route>
+                        <Route path="/">
+                            <Carouselfeature />
+                            <Grid />
+                        </Route>
+                    </Switch>
+                </div>
+            </ItemProvider>
+        </Router>
     );
 };
 
