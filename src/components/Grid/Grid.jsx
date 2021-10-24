@@ -6,6 +6,7 @@ import firesore from "../../services/firestore.js";
 import { useState, useEffect, useContext } from "react";
 import { ItemContext } from "../../context/ItemContext";
 import styles from "./Grid.module.scss";
+import { Link } from "react-router-dom";
 const Grid = () => {
     const { items, setItems } = useContext(ItemContext);
     // const [items, setItems] = useState(null);
@@ -35,7 +36,12 @@ const Grid = () => {
                                         src={item.img}
                                     />
                                     <p>{item.name}</p>
-                                    <p>${item.price}</p>
+                                    <p>$ {item.price}</p>
+                                    <p>
+                                        <Link to={`/items/${item.id}`}>
+                                            To product page
+                                        </Link>
+                                    </p>
                                 </Col>
                             );
                         })}
