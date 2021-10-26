@@ -30,18 +30,16 @@ const Grid = () => {
                     {items &&
                         items.map((item, index) => {
                             return (
-                                <Col key={index}>
+                                <Col key={index} className={styles.grid_col}>
                                     <img
                                         className={styles.grid_img}
                                         src={item.img}
                                     />
-                                    <p>{item.name}</p>
+                                    <Link to={`/items/${item.id}`}>
+                                        {item.name}
+                                    </Link>
                                     <p>$ {item.price}</p>
-                                    <p>
-                                        <Link to={`/items/${item.id}`}>
-                                            To product page
-                                        </Link>
-                                    </p>
+                                    <p></p>
                                 </Col>
                             );
                         })}
