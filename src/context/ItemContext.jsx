@@ -4,7 +4,7 @@ import firesore from "../services/firestore.js";
 export const ItemContext = createContext();
 
 const ItemProvider = ({ children }) => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
     useEffect(() => {
         const getItems = async () => {
             const colRef = firesore.collection("kstore");

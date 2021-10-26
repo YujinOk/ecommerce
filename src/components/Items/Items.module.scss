@@ -1,0 +1,29 @@
+img {
+    height: 50%;
+    width: 50%;
+}
+
+.favorited {
+    background-color: hotpink;
+}
+.item_container {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.item_sm_container {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+}
+span {
+    font-weight: 800;
+}
+p {
+    font-size: 1.2rem;
+}
+button {
+    border-radius: 50%;
+}
