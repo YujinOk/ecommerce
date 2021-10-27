@@ -26,11 +26,15 @@ const Grid = () => {
     return (
         <div>
             <Container>
-                <Row>
+                <Row className="d-flex justify-content-center">
                     {items &&
                         items.map((item, index) => {
                             return (
-                                <Col key={index} className={styles.grid_col}>
+                                <Col
+                                    xs={2}
+                                    key={index}
+                                    className={styles.grid_col}
+                                >
                                     <img
                                         className={styles.grid_img}
                                         src={item.img}
