@@ -1,5 +1,10 @@
+@font-face {
+    font-family: "BoldlyMissy";
+    src: url("BoldlyMissy.otf") format("opentype");
+}
+
 * {
-    font-family: cursive;
+    font-family: "BoldlyMissy";
 }
 .thankyou {
     font-size: 3rem;
