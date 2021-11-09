@@ -12,11 +12,7 @@ const Carouselfeature = () => {
     const carouselSlides = items.map((item, index) => {
         return (
             <Carousel.Item key={index} className={styles.carousel_Container}>
-                <img
-                    className="d-block w-100 h-100"
-                    src={item.img}
-                    alt="First slide"
-                />
+                <img className={styles.img} src={item.img} alt="First slide" />
 
                 <Carousel.Caption>
                     <h3>{item.name}</h3>

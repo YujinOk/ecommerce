@@ -26,7 +26,7 @@ const App = () => {
                         </Route>
                         <Route path="/">
                             <Carouselfeature />
-                            <hr className="my-5 " />
+                            <hr className="my-1 " />
                             <Grid />
                         </Route>
                     </Switch>
