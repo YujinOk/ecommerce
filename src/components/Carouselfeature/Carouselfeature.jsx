@@ -9,6 +9,7 @@ const Carouselfeature = () => {
     if (!items) {
         return <div>Loading...⚪️</div>;
     }
+
     const carouselSlides = items.map((item, index) => {
         return (
             <Carousel.Item key={index} className={styles.carousel_Container}>
