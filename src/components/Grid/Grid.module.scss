@@ -1,14 +1,12 @@
 .grid_img {
-    width: 100%;
-    height: 80%;
-    // margin: 0 5% 0 5%;
+  width: 100%;
+  height: 80%;
 }
 .grid_col {
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
-    margin: 0 4% 0 4%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 4% 0 4%;
 
-    align-items: center;
-    font-size: 1.3rem;
+  align-items: center;
+  font-size: 1.3rem;
 }
