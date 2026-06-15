@@ -4,7 +4,7 @@ import MyNav from "./components/Nav/Nav.jsx";
 import Grid from "./components/Grid/Grid.jsx";
 import ItemProvider from "./context/ItemContext.jsx";
 import Items from "./components/Items/Items.jsx";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 const App = () => {
     return (
@@ -12,21 +12,21 @@ const App = () => {
             <ItemProvider>
                 <div>
                     <MyNav />
-                    <Switch>
-                        <Route path="/buypage">
+                    <Routes>
+                        <Route path="/buypage" element={
                             <div className="thankyou">
                                 Thank you for your purchase 😉 감사합니다!
                             </div>
-                        </Route>
-                        <Route path="/items/:id">
-                            <Items />
-                        </Route>
-                        <Route path="/">
-                            <Carouselfeature />
-                            <hr className="my-1 " />
-                            <Grid />
-                        </Route>
-                    </Switch>
+                        } />
+                        <Route path="/items/:id" element={<Items />} />
+                        <Route path="/" element={
+                            <>
+                                <Carouselfeature />
+                                <hr className="my-1" />
+                                <Grid />
+                            </>
+                        } />
+                    </Routes>
                 </div>
             </ItemProvider>
         </Router>
