@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
 import styles from "./Nav.module.scss";
@@ -37,9 +36,9 @@ const MyNav = () => {
                     width="918.298"
                     height="105.066"
                     filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                   >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feColorMatrix
                       in="SourceAlpha"
                       type="matrix"
