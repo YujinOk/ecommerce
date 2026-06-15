@@ -37,8 +37,12 @@
   },
   "homepage": "https://yujinok.github.io/ecommerce/",
   "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^6.0.2",
     "gh-pages": "^3.2.3",
+    "typescript": "^6.0.3",
     "vite": "^8.0.16"
   }
 }

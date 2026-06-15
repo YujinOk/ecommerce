@@ -1,4 +1,15 @@
-const mockItems = [
+export type Item = {
+  id: string;
+  name: string;
+  price: number;
+  img: string;
+  variant: string[];
+  quantity: number;
+  sale: number;
+  favorited: boolean;
+};
+
+const mockItems: Item[] = [
   {
     id: "1",
     name: "Classic White Tee",
