@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ItemContext } from "../../context/ItemContext";
@@ -6,85 +5,80 @@ import styles from "./Items.module.scss";
 import { Button } from "react-bootstrap";
 
 const Items = () => {
-  const { id } = useParams();
-  const { items } = useContext(ItemContext);
+  const { id } = useParams<{ id: string }>();
+  const context = useContext(ItemContext);
   const [purchase, setPurchase] = useState(false);
   const [variant, setVariant] = useState("");
   const [qty, setQty] = useState(1);
 
-  const changeQty = (event) => {
-    setQty(event.target.value);
+  const changeQty = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQty(Number(event.target.value));
   };
-  const changeVariant = (event) => {
+
+  const changeVariant = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setVariant(event.target.value);
   };
+
   const addCartBtnClicker = () => {
     setPurchase(true);
   };
 
-  if (!items) {
-    return <div>Loading...⚪️ </div>;
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const btn = event.currentTarget;
+    btn.classList.toggle(styles.favorited);
+    btn.innerText = btn.innerText === "Favorited" ? "Not Favorited" : "Favorited";
+  };
+
+  if (!context || !context.items) {
+    return <div>Loading...⚪️</div>;
   }
 
-  const itemData = items.filter((item) => {
-    return id === item.id;
-  });
+  const itemData = context.items.find((item) => item.id === id);
 
-  const variantSelect = itemData[0].variant.map((item) => {
-    return <option value={item}>{item}</option>;
-  });
+  if (!itemData) {
+    return <div>Item not found.</div>;
+  }
 
-  const handleClick = (event) => {
-    event.target.classList.toggle(styles.favorited);
-    if (event.target.innerText === "Favorited") {
-      event.target.innerText = "Not Favorited";
-    } else {
-      event.target.innerText = "Favorited";
-    }
-  };
   return (
     <div className={styles.item_container}>
-      <img className={styles.img} src={itemData[0].img} />
+      <img className={styles.img} src={itemData.img} alt={itemData.name} />
       <div className={styles.item_sm_container}>
         <p>
           <span>Name: </span>
-          {itemData[0].name}
+          {itemData.name}
         </p>
         <p>
-          <span>Price: </span>${itemData[0].price}
+          <span>Price: </span>${itemData.price}
         </p>
-        <label for="quantity">Quantity:</label>
+        <label htmlFor="quantity">Quantity:</label>
         <input
           onChange={changeQty}
           value={qty}
           type="number"
           min="0"
-          max={itemData[0].quantity}
+          max={itemData.quantity}
+          id="quantity"
         />
-        <label for="color"> Choose Variant</label>
-        <select
-          onChange={changeVariant}
-          value={variant}
-          name="quantity"
-          id="color"
-        >
-          {variantSelect}
+        <label htmlFor="color">Choose Variant</label>
+        <select onChange={changeVariant} value={variant} id="color">
+          {itemData.variant.map((v) => (
+            <option key={v} value={v}>{v}</option>
+          ))}
         </select>
         <p className="my-4">
-          {!itemData[0].favorited && (
+          {!itemData.favorited && (
             <button onClick={handleClick}>Favorite</button>
           )}
         </p>
         {!purchase ? (
           <Button onClick={addCartBtnClicker} size="lg" variant="dark">
-            {" "}
             Add to Cart
           </Button>
         ) : (
           <div>
-            <p>You have selected: </p>
+            <p>You have selected:</p>
             <p>
-              {qty}, {itemData[0].name} {variant}
+              {qty}, {itemData.name} {variant}
             </p>
             <Button size="lg" variant="dark">
               <Link to="/buypage">Buy it Now!!!</Link>
