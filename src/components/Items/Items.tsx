@@ -1,8 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ItemContext } from "../../context/ItemContext";
-import styles from "./Items.module.scss";
-import { Button } from "react-bootstrap";
+import { Button } from "@/components/ui/button";
 
 const Items = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,6 +9,7 @@ const Items = () => {
   const [purchase, setPurchase] = useState(false);
   const [variant, setVariant] = useState("");
   const [qty, setQty] = useState(1);
+  const [favorited, setFavorited] = useState(false);
 
   const changeQty = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQty(Number(event.target.value));
@@ -17,16 +17,6 @@ const Items = () => {
 
   const changeVariant = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setVariant(event.target.value);
-  };
-
-  const addCartBtnClicker = () => {
-    setPurchase(true);
-  };
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const btn = event.currentTarget;
-    btn.classList.toggle(styles.favorited);
-    btn.innerText = btn.innerText === "Favorited" ? "Not Favorited" : "Favorited";
   };
 
   if (!context || !context.items) {
@@ -40,48 +30,68 @@ const Items = () => {
   }
 
   return (
-    <div className={styles.item_container}>
-      <img className={styles.img} src={itemData.img} alt={itemData.name} />
-      <div className={styles.item_sm_container}>
-        <p>
-          <span>Name: </span>
-          {itemData.name}
-        </p>
-        <p>
-          <span>Price: </span>${itemData.price}
-        </p>
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          onChange={changeQty}
-          value={qty}
-          type="number"
-          min="0"
-          max={itemData.quantity}
-          id="quantity"
-        />
-        <label htmlFor="color">Choose Variant</label>
-        <select onChange={changeVariant} value={variant} id="color">
-          {itemData.variant.map((v) => (
-            <option key={v} value={v}>{v}</option>
-          ))}
-        </select>
-        <p className="my-4">
-          {!itemData.favorited && (
-            <button onClick={handleClick}>Favorite</button>
-          )}
-        </p>
+    <div className="max-w-4xl mx-auto px-6 py-12 flex gap-10">
+      <img
+        src={itemData.img}
+        alt={itemData.name}
+        className="w-1/2 rounded-xl object-cover"
+      />
+
+      <div className="flex flex-col gap-4 w-1/2">
+        <h1 className="text-2xl font-bold text-gray-900">{itemData.name}</h1>
+        <p className="text-xl text-gray-700">${itemData.price}</p>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="color" className="text-sm font-medium text-gray-700">
+            Variant
+          </label>
+          <select
+            id="color"
+            onChange={changeVariant}
+            value={variant}
+            className="border rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          >
+            {itemData.variant.map((v) => (
+              <option key={v} value={v}>{v}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="quantity" className="text-sm font-medium text-gray-700">
+            Quantity
+          </label>
+          <input
+            id="quantity"
+            onChange={changeQty}
+            value={qty}
+            type="number"
+            min="1"
+            max={itemData.quantity}
+            className="border rounded-lg px-3 py-2 text-sm w-24 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+        </div>
+
+        <button
+          onClick={() => setFavorited((prev) => !prev)}
+          className={`text-sm w-fit transition-colors ${
+            favorited ? "text-pink-500 font-medium" : "text-gray-400 hover:text-pink-400"
+          }`}
+        >
+          {favorited ? "♥ Favorited" : "♡ Add to Favourites"}
+        </button>
+
         {!purchase ? (
-          <Button onClick={addCartBtnClicker} size="lg" variant="dark">
+          <Button onClick={() => setPurchase(true)} size="lg" className="mt-2">
             Add to Cart
           </Button>
         ) : (
-          <div>
-            <p>You have selected:</p>
-            <p>
-              {qty}, {itemData.name} {variant}
+          <div className="flex flex-col gap-3 mt-2">
+            <p className="text-sm text-gray-600">
+              Selected: {qty}x {itemData.name} — {variant}
             </p>
-            <Button size="lg" variant="dark">
-              <Link to="/buypage">Buy it Now!!!</Link>
+            <Button size="lg" asChild>
+              <Link to="/buypage">Buy it Now</Link>
             </Button>
           </div>
         )}
