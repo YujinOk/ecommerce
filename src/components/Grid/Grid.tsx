@@ -1,7 +1,5 @@
-import { Container, Row, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { ItemContext } from "../../context/ItemContext";
-import styles from "./Grid.module.scss";
 import { Link } from "react-router-dom";
 
 const Grid = () => {
@@ -12,18 +10,26 @@ const Grid = () => {
   }
 
   return (
-    <div>
-      <Container>
-        <Row className="d-flex justify-content-center">
-          {context.items.map((item, index) => (
-            <Col xs={2} key={index} className={styles.grid_col}>
-              <img className={styles.grid_img} src={item.img} alt={item.name} />
-              <Link to={`/items/${item.id}`}>{item.name}</Link>
-              <p>$ {item.price}</p>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+    <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="grid grid-cols-3 gap-6">
+        {context.items.map((item) => (
+          <Link
+            to={`/items/${item.id}`}
+            key={item.id}
+            className="group border rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+          >
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-full aspect-video object-cover"
+            />
+            <div className="p-4">
+              <p className="font-medium text-gray-900 group-hover:underline">{item.name}</p>
+              <p className="text-gray-500 text-sm mt-1">${item.price}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
