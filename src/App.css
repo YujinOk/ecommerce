@@ -1,12 +1,4 @@
-@font-face {
-    font-family: "BoldlyMissy";
-    src: url("BoldlyMissy.otf") format("opentype");
-}
-
-* {
-    font-family: "BoldlyMissy";
-}
 .thankyou {
-    font-size: 3rem;
-    text-align: center;
+  font-size: 3rem;
+  text-align: center;
 }

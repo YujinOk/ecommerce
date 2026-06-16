@@ -5,8 +5,8 @@ const MyNav = () => {
     <nav className="w-full border-b bg-white px-6 py-3 flex items-center justify-between">
       <Link to="/" className="w-48 shrink-0">
         <svg
-          width="976"
-          height="123"
+          width="100%"
+          height="auto"
           viewBox="0 0 976 123"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
