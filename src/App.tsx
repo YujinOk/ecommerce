@@ -1,9 +1,8 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import Carouselfeature from "./components/Carouselfeature/Carouselfeature";
-import MyNav from "./components/Nav/Nav";
-import Grid from "./components/Grid/Grid";
+import Carouselfeature from "./components/carousel/Carouselfeature";
+import MyNav from "./components/nav/Nav";
+import Grid from "./components/grid/Grid";
 import ItemProvider from "./context/ItemContext";
-import Items from "./components/Items/Items";
+import Items from "./components/items/Items";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
