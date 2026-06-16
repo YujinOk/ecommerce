@@ -16,8 +16,8 @@ const Carouselfeature = () => {
   }
 
   return (
-    <div className="w-full bg-gray-950 py-12">
-      <Carousel className="max-w-3xl mx-auto px-12">
+    <div className="w-full bg-gray-950 py-12 overflow-hidden">
+      <Carousel className="max-w-3xl mx-auto px-16">
         <CarouselContent>
           {context.items.map((item) => (
             <CarouselItem key={item.id}>
