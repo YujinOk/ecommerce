@@ -43,6 +43,7 @@ const Items = () => {
       <div className="flex flex-col gap-4 w-1/2">
         <h1 className="text-2xl font-bold text-gray-900">{itemData.name}</h1>
         <p className="text-xl text-gray-700">${itemData.price}</p>
+        <p className="text-sm text-gray-500 leading-relaxed">{itemData.description}</p>
 
         <div className="flex flex-col gap-1">
           <label htmlFor="color" className="text-sm font-medium text-gray-700">

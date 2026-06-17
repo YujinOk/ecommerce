@@ -7,6 +7,7 @@ export type Item = {
   quantity: number;
   sale: number;
   favorited: boolean;
+  description: string;
 };
 
 const mockItems: Item[] = [
@@ -19,6 +20,7 @@ const mockItems: Item[] = [
     quantity: 20,
     sale: 10,
     favorited: false,
+    description: "A wardrobe staple made from 100% organic cotton. Relaxed fit with a clean crew neck — pairs with everything and holds its shape wash after wash.",
   },
   {
     id: "2",
@@ -29,6 +31,7 @@ const mockItems: Item[] = [
     quantity: 15,
     sale: 20,
     favorited: false,
+    description: "Tailored slim fit through the hip and thigh with a slight stretch for all-day comfort. Finished with a tapered leg and five-pocket styling.",
   },
   {
     id: "3",
@@ -39,6 +42,7 @@ const mockItems: Item[] = [
     quantity: 10,
     sale: 0,
     favorited: false,
+    description: "Heavyweight 380gsm fleece with a dropped shoulder silhouette. Brushed interior for warmth, kangaroo pocket, and ribbed cuffs that keep their shape.",
   },
   {
     id: "4",
@@ -49,6 +53,7 @@ const mockItems: Item[] = [
     quantity: 8,
     sale: 15,
     favorited: false,
+    description: "Full-grain leather with an adjustable strap and a secure zip closure. Compact enough for daily use — fits your phone, cards, keys, and not much else.",
   },
   {
     id: "5",
@@ -59,6 +64,7 @@ const mockItems: Item[] = [
     quantity: 12,
     sale: 5,
     favorited: false,
+    description: "Unbleached cotton canvas upper on a vulcanised rubber sole. Minimal, sturdy, and gets better looking the more you wear them.",
   },
   {
     id: "6",
@@ -69,6 +75,7 @@ const mockItems: Item[] = [
     quantity: 30,
     sale: 0,
     favorited: false,
+    description: "Knitted from a merino-lambswool blend — warm without the itch. One size with enough stretch to fit most heads comfortably.",
   },
 ];
 
