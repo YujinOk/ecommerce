@@ -33,14 +33,14 @@ const Items = () => {
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gray-50">
-    <div className="max-w-4xl mx-auto px-6 py-12 flex gap-10">
+    <div className="max-w-4xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-10">
       <img
         src={itemData.img}
         alt={itemData.name}
-        className="w-1/2 rounded-xl object-cover aspect-square"
+        className="w-full md:w-1/2 rounded-xl object-cover aspect-square"
       />
 
-      <div className="flex flex-col gap-4 w-1/2">
+      <div className="flex flex-col gap-4 w-full md:w-1/2">
         <h1 className="text-2xl font-bold text-gray-900">{itemData.name}</h1>
         <p className="text-xl text-gray-700">${itemData.price}</p>
         <p className="text-sm text-gray-500 leading-relaxed">{itemData.description}</p>
@@ -99,9 +99,12 @@ const Items = () => {
         ) : (
           <div className="flex flex-col gap-3 mt-2">
             <p className="text-sm text-green-600 font-medium">Added to cart!</p>
-            <Button size="lg" asChild>
-              <Link to="/cart">View Cart</Link>
-            </Button>
+            <Link
+              to="/cart"
+              className="inline-flex items-center justify-center h-11 px-8 rounded-md bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+            >
+              View Cart
+            </Link>
             <Button
               variant="outline"
               size="lg"
