@@ -1,71 +1,62 @@
-# Getting Started with Create React App
+# Coolstuff — E-commerce Portfolio Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend e-commerce app built to demonstrate a modern React stack. Originally scaffolded with Create React App; fully migrated and modernised as a learning project.
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+| Tool | Why |
+|------|-----|
+| **Vite** | Replaces CRA — significantly faster dev server and build times |
+| **React 18** | `createRoot` API, concurrent rendering |
+| **TypeScript** | Type safety across components, context, and data models |
+| **React Router v6** | `Routes`/`element` API replacing v5 `Switch`/`component` |
+| **Tailwind CSS v4** | Utility-first styling, no custom CSS needed |
+| **shadcn/ui** | Accessible, composable components (Carousel, Button) |
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Product grid with responsive layout (1 → 2 → 3 columns)
+- Product detail page with variant and quantity selection
+- Shopping cart with add, remove, and quantity support
+- Cart count badge in the nav
+- Cart persists across page refreshes via `localStorage`
+- Checkout confirmation flow
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running Locally
 
-### `npm test`
+```bash
+npm install
+npm run dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+App runs at `http://localhost:5173`
 
-### `npm run build`
+## Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+  components/
+    carousel/     # Hero carousel (shadcn/embla)
+    grid/         # Product listing grid
+    items/        # Product detail page
+    cart/         # Cart page
+    nav/          # Navigation with cart badge
+    footer/       # Footer
+  context/
+    ItemContext   # Provides product list to the app
+    CartContext   # Cart state + localStorage sync
+  data/
+    mockData.ts   # Static product data with TypeScript types
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## What Was Migrated
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This started as a 2021 CRA project using React 17, Bootstrap, SCSS modules, and Firebase. The migration involved:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# ecommerce
+- CRA → Vite (faster builds, native ESM, no ejecting)
+- React 17 → 18 (`ReactDOM.render` → `createRoot`)
+- React Router v5 → v6
+- Bootstrap + react-bootstrap → Tailwind CSS + shadcn/ui
+- SCSS modules → Tailwind utility classes
+- Firebase Firestore → static mock data
+- JavaScript → TypeScript throughout
