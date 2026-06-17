@@ -88,7 +88,7 @@ const Items = () => {
         {!added ? (
           <Button
             onClick={() => {
-              cartContext?.addToCart(itemData);
+              cartContext?.addToCart(itemData, qty);
               setAdded(true);
             }}
             size="lg"

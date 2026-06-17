@@ -5,8 +5,9 @@ export type CartItem = Item & { cartQuantity: number };
 
 type CartContextType = {
   cart: CartItem[];
-  addToCart: (item: Item) => void;
+  addToCart: (item: Item, quantity?: number) => void;
   removeFromCart: (id: string) => void;
+  clearCart: () => void;
   totalItems: number;
   totalPrice: number;
 };
@@ -23,21 +24,23 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item: Item) => {
+  const addToCart = (item: Item, quantity: number = 1) => {
     setCart((prev) => {
       const existing = prev.find((c) => c.id === item.id);
       if (existing) {
         return prev.map((c) =>
-          c.id === item.id ? { ...c, cartQuantity: c.cartQuantity + 1 } : c
+          c.id === item.id ? { ...c, cartQuantity: c.cartQuantity + quantity } : c
         );
       }
-      return [...prev, { ...item, cartQuantity: 1 }];
+      return [...prev, { ...item, cartQuantity: quantity }];
     });
   };
 
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((c) => c.id !== id));
   };
+
+  const clearCart = () => setCart([]);
 
   const totalItems = cart.reduce((sum, c) => sum + c.cartQuantity, 0);
   const totalPrice = cart.reduce(
@@ -47,7 +50,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, totalItems, totalPrice }}
+      value={{ cart, addToCart, removeFromCart, clearCart, totalItems, totalPrice }}
     >
       {children}
     </CartContext.Provider>

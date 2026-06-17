@@ -1,14 +1,30 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Cart = () => {
   const context = useContext(CartContext);
+  const [ordered, setOrdered] = useState(false);
 
   if (!context) return null;
 
-  const { cart, removeFromCart, totalItems, totalPrice } = context;
+  const { cart, removeFromCart, clearCart, totalItems, totalPrice } = context;
+
+  if (ordered) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-gray-50 flex flex-col items-center justify-center gap-4">
+        <p className="text-3xl font-bold text-gray-900">Order placed!</p>
+        <p className="text-gray-500">Thanks for shopping with us.</p>
+        <Link
+          to="/"
+          className="bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Continue Shopping
+        </Link>
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (
@@ -65,7 +81,9 @@ const Cart = () => {
           <p className="text-sm text-gray-500">Total</p>
           <p className="text-2xl font-bold text-gray-900">${totalPrice}</p>
         </div>
-        <Button size="lg">Checkout</Button>
+        <Button size="lg" onClick={() => { clearCart(); setOrdered(true); }}>
+          Checkout
+        </Button>
       </div>
     </div>
     </div>
