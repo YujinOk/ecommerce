@@ -1,12 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ItemContext } from "../../context/ItemContext";
+import { CartContext } from "../../context/CartContext";
 import { Button } from "@/components/ui/button";
 
 const Items = () => {
   const { id } = useParams<{ id: string }>();
   const context = useContext(ItemContext);
-  const [purchase, setPurchase] = useState(false);
+  const cartContext = useContext(CartContext);
+  const [added, setAdded] = useState(false);
   const [variant, setVariant] = useState("");
   const [qty, setQty] = useState(1);
   const [favorited, setFavorited] = useState(false);
@@ -81,17 +83,29 @@ const Items = () => {
           {favorited ? "♥ Favorited" : "♡ Add to Favourites"}
         </button>
 
-        {!purchase ? (
-          <Button onClick={() => setPurchase(true)} size="lg" className="mt-2">
+        {!added ? (
+          <Button
+            onClick={() => {
+              cartContext?.addToCart(itemData);
+              setAdded(true);
+            }}
+            size="lg"
+            className="mt-2"
+          >
             Add to Cart
           </Button>
         ) : (
           <div className="flex flex-col gap-3 mt-2">
-            <p className="text-sm text-gray-600">
-              Selected: {qty}x {itemData.name} — {variant}
-            </p>
+            <p className="text-sm text-green-600 font-medium">Added to cart!</p>
             <Button size="lg" asChild>
-              <Link to="/buypage">Buy it Now</Link>
+              <Link to="/cart">View Cart</Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setAdded(false)}
+            >
+              Add Another
             </Button>
           </div>
         )}
