@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { ShoppingCart } from "lucide-react";
 
 const MyNav = () => {
+  const context = useContext(CartContext);
+  const totalItems = context?.totalItems ?? 0;
+
   return (
     <nav className="w-full border-b bg-white px-6 py-3 flex items-center justify-between">
       <Link to="/" className="w-48 shrink-0">
@@ -48,7 +54,14 @@ const MyNav = () => {
 
       <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
         <Link to="/" className="hover:text-black transition-colors">Home</Link>
-        <Link to="/buypage" className="hover:text-black transition-colors">Orders</Link>
+        <Link to="/cart" className="relative hover:text-black transition-colors">
+          <ShoppingCart size={20} />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
+        </Link>
       </div>
     </nav>
   );
