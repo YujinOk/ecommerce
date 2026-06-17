@@ -32,11 +32,12 @@ const Items = () => {
   }
 
   return (
+    <div className="min-h-[calc(100vh-64px)] bg-gray-50">
     <div className="max-w-4xl mx-auto px-6 py-12 flex gap-10">
       <img
         src={itemData.img}
         alt={itemData.name}
-        className="w-1/2 rounded-xl object-cover"
+        className="w-1/2 rounded-xl object-cover aspect-square"
       />
 
       <div className="flex flex-col gap-4 w-1/2">
@@ -110,6 +111,7 @@ const Items = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };
