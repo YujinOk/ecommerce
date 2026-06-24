@@ -11,7 +11,7 @@ import "./App.css";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/ecommerce">
       <ItemProvider>
         <CartProvider>
           <div className="min-h-screen flex flex-col">
